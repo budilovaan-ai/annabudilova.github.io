@@ -22,7 +22,7 @@ const projects = [
     title: "Generování novinových titulků (NLP & LLM)",
     tags: ["Python", "NLP", "Transformers", "Streamlit"],
     description: "Komplexní projekt zaměřený na zpracování přirozeného jazyka (NLP). Cílem byl fine-tuning jazykového modelu pro automatické generování výstižných novinových titulků na základě textu článku. Projekt pokrývá kompletní pipeline od předzpracování textových dat až po deployment interaktivní webové aplikace.",
-    teamNote: "Na řešení jsem spolupracovala v pětičlenném týmu. Soustředila jsem se především na explorativní analýzu, přípravu textových dat(embedding, tokenizace, seq2seq), trénování baseline modelu."
+    teamNote: "Na řešení jsem spolupracovala v pětičlenném týmu. Soustředila jsem se především na explorativní analýzu, přípravu textových dat(embedding, tokenizace, seq2seq), trénování baseline modelu.",
     images: [
       { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-bqUpBTurPsx7k3JH3HcUobwcZlqzV3.png", caption: "Uživatelské rozhraní Streamlit aplikace" },
       { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-pU3Ho6dQjSnqk5shsUwyKqSgUUiATw.png", caption: "Ukázka vygenerovaných titulků" }
