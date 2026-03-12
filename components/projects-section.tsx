@@ -5,7 +5,7 @@ const projects = [
     id: 1,
     title: "Prediktivní modelování a byznysová optimalizace",
     tags: ["Python", "XGBoost", "Machine Learning", "Business Analytics"],
-    description: "Machine Learning projekt zaměřený na predikci výsledků fotbalových zápasů (Over/Under 2.5 gólů). Cílem bylo vytvořit prediktivní model (XGBoost / Random Forest) a kvantifikovat jeho byznysový přínos. Redukce features podle vlivu na přesnost modelu vedla k nárůstu očekávaného ročního zisku o 37 %.",
+    description: "Machine Learning projekt zaměřený na predikci výsledků fotbalových zápasů (Over/Under 2.5 gólů). Cílem bylo vytvořit prediktivní model (XGBoost / Random Forest) a kvantifikovat jeho byznysový přínos. Redukce features podle dopadu na přesnost predikcí modelu vedla k nárůstu očekávaného ročního zisku o 37 %.",
     teamNote: "Projekt byl realizován týmově. Mojí hlavní zodpovědností byla explorativní analýza, trénování modelu, výběr a testování features, které měly nejvyšší dopad na zvýšení přesnosti modelu.",
     images: [
       { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-VbqN6aVIkihKs1xW3jBAZYM0QvgeVC.png", caption: "Vliv accuracy na očekávaný zisk (Matplotlib)" },
@@ -28,7 +28,7 @@ const projects = [
       { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-pU3Ho6dQjSnqk5shsUwyKqSgUUiATw.png", caption: "Ukázka vygenerovaných titulků" }
     ],
     links: [
-      { text: "Otevřít Live Demo (HESLO: TA-2.)", href: "https://ta2-headline-generation.streamlit.app/?fbclid=IwY2xjawQbeqBleHRuA2FlbQIxMABicmlkETBKc0tJOUNSdGhNQXZnYkMyc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHhahHLEl26_UFBg4fAYqB4tQn3DFZDUwSYqwqR1ZC468mfHqZMuae6WOH-yL_aem_tK84JdhVQSs5Nn20jqAQlw" }
+      { text: "Otevřít Live Demo (HESLO: TA-2)", href: "https://ta2-headline-generation.streamlit.app/?fbclid=IwY2xjawQbeqBleHRuA2FlbQIxMABicmlkETBKc0tJOUNSdGhNQXZnYkMyc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHhahHLEl26_UFBg4fAYqB4tQn3DFZDUwSYqwqR1ZC468mfHqZMuae6WOH-yL_aem_tK84JdhVQSs5Nn20jqAQlw" }
     ]
   },
   {
