@@ -38,7 +38,7 @@ export function TechStackSection() {
             Tech Stack
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Můj datový stack: Nástroje, se kterými mám zkušenost.
+            Nástroje, se kterými mám zkušenost.
           </p>
         </div>
         
