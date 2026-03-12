@@ -3,7 +3,7 @@ import { ProjectCard } from "@/components/project-card"
 const projects = [
   {
     id: 1,
-    title: "Prediktivní modelování a byznysová optimalizace",
+    title: "Predikce výsledků fotbalových zápasů.",
     tags: ["Python", "XGBoost", "Machine Learning", "Business Analytics"],
     description: "Machine Learning projekt zaměřený na predikci výsledků fotbalových zápasů (Over/Under 2.5 gólů). Cílem bylo vytvořit prediktivní model (XGBoost / Random Forest) a kvantifikovat jeho byznysový přínos. Redukce features podle dopadu na přesnost predikcí modelu vedla k nárůstu očekávaného ročního zisku o 37 %.",
     teamNote: "Projekt byl realizován týmově. Mojí hlavní zodpovědností byla explorativní analýza, trénování modelu, výběr a testování features, které měly nejvyšší dopad na zvýšení přesnosti modelu.",
