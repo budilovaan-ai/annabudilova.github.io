@@ -29,10 +29,9 @@ export function HeroSection() {
         </p>
         
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-pretty">
-          Studentka oboru Data Analytics na VŠE s praxí z datové analytiky (Česká spořitelna, Siemens). 
-          Mým hlavním zaměřením je explorativní analýza dat a BI. Analytická práce mě baví a chci se v ní dál zdokonalovat, zároveň k ní ráda nabaluji i další Data Science přístupy. 
-          Baví mě propojovat klasickou analytiku s Machine Learningem a NLP.
-
+          Data Analytics student at VŠE with hands-on professional experience as a Data Analyst at Česká spořitelna and Siemens. My core expertise is built on SQL, exploratory data analysis, and BI reporting.
+<br/><br/>
+I enjoy working with data and uncovering insights. To take my analytical work even further, I’m currently expanding my skillset with advanced Data Science methods—combining classic business analytics with Python, Machine Learning, and NLP.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
