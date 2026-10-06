@@ -64,7 +64,7 @@ export function ProjectCard({
           {teamNote && (
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
               <p className="text-sm text-primary">
-                <span className="font-semibold">Role v týmu: </span>
+                <span className="font-semibold">Team role: </span>
                 {teamNote}
               </p>
             </div>
@@ -95,7 +95,7 @@ export function ProjectCard({
                     )}
                     <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <span className="text-foreground text-sm font-medium border border-border px-4 py-2 rounded-full backdrop-blur-sm bg-card/50">
-                        Zvětšit
+                        View
                       </span>
                     </div>
                   </div>
@@ -162,7 +162,7 @@ export function ProjectCard({
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative w-full h-full max-w-6xl max-h-[90vh]">
-            {/* TADY JE TEN OPRAVENÝ KŘÍŽEK */}
+            {}
             <Button 
               variant="secondary" 
               size="icon" 
@@ -178,7 +178,7 @@ export function ProjectCard({
             <div className="relative w-full h-full rounded-xl overflow-hidden border border-border bg-card/50 shadow-2xl">
               <Image
                 src={selectedImage}
-                alt="Zvětšený obrázek"
+                alt="Expanded image"
                 fill
                 className="object-contain"
                 unoptimized
