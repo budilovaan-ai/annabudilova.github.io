@@ -39,12 +39,12 @@ export function CodeBlock({ code, language }: CodeBlockProps) {
           {copied ? (
             <>
               <Check className="w-3 h-3 mr-1" />
-              Zkopírováno
+              Copied
             </>
           ) : (
             <>
               <Copy className="w-3 h-3 mr-1" />
-              Kopírovat
+              Copy
             </>
           )}
         </Button>
