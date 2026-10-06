@@ -6,7 +6,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="flex flex-col items-center justify-center mb-8">
           <h3 className="text-lg font-semibold text-foreground mb-4">
-            Rychlé odkazy
+            Quick links
           </h3>
           <div className="flex gap-6">
             <a 
@@ -19,7 +19,7 @@ export function Footer() {
               href="#projects"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
-              Projekty
+              Projects
             </a>
           </div>
         </div>
@@ -27,7 +27,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="pt-8 border-t border-border">
           <p className="text-center text-sm text-muted-foreground">
-            © {currentYear} Anna Budilová. Všechna práva vyhrazena.
+            © {currentYear} Anna Budilová. All rights reserved.
           </p>
         </div>
       </div>
