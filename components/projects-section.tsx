@@ -10,7 +10,7 @@ const projects = [
     images: [
       { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-VbqN6aVIkihKs1xW3jBAZYM0QvgeVC.png", caption: "Vliv accuracy na očekávaný zisk (Matplotlib)" },
       { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-zSbtOstZhUI6E8T6ZB8S9zm8ti2uPi.png", caption: "Analýza" },
-      { src: "features.png", caption: "Důležitost features" },
+      { src: "features.png", caption: "Feature Importance" },
       { src: "goly.png", caption: "Linear Regression: Relationship between shots on target and goals scored" } 
     ],
     links: [
