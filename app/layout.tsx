@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Anna Budilová | Data Analytics',
-  description: 'Studentka oboru Data Analytics na VŠE s praxí na pozici Junior analytik dat v České spořitelně.',
+  description: 'Studentka oboru Data Analytics na VŠE s praxí z datové analytiky (Česká spořitelna, Siemens). Mým hlavním zaměřením je explorativní analýza dat a BI. Analytická práce mě baví a chci se v ní dál zdokonalovat, zároveň k ní ráda nabaluji i další Data Science přístupy. Baví mě propojovat klasickou analytiku s Machine Learningem a NLP.',
   generator: 'v0.app',
   icons: {
     icon: [
