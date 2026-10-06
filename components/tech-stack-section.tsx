@@ -3,27 +3,27 @@ import { Database, BarChart3, Cloud, Code, Server } from "lucide-react"
 
 const techCategories = [
   {
-    title: "Jazyky",
+    title: "Languages",
     icon: Database,
     techs: ["Python", "R", "SQL"]
   },
   {
-    title: "Knihovny a frameworky",
+    title: "Libraries & Frameworks",
     icon: Code,
     techs: ["Pandas", "NumPy", "Scikit-learn", "XGBoost", "Matplotlib", "TidyVerse"]
   },
   {
-    title: "Databázové systémy",
+    title: "Database Systems",
     icon: Server,
     techs: ["Oracle", "MSSQL", "Snowflake"]
   },
   {
-    title: "Vizualizace a BI",
+    title: "Visualization & BI",
     icon: BarChart3,
     techs: ["Power BI", "Oracle Analytics Cloud", "Tableau"]
   },
   {
-    title: "Nástroje a Cloud",
+    title: "Tools & Cloud",
     icon: Cloud,
     techs: ["OCI", "Jupyter", "Jira", "Git"]
   }
@@ -38,7 +38,7 @@ export function TechStackSection() {
             Tech Stack
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Nástroje, se kterými mám zkušenost.
+           Tools and technologies I have experience with.
           </p>
         </div>
         
