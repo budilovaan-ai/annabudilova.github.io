@@ -29,8 +29,10 @@ export function HeroSection() {
         </p>
         
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-pretty">
-          Studentka oboru Data Analytics na VŠE s praxí na pozici Junior analytik dat v České spořitelně. 
-          Zaměřuji se na explorativní analýzu dat, SQL, Machine Learning a NLP (textovou analytiku).
+          Studentka oboru Data Analytics na VŠE s praxí z datové analytiky (Česká spořitelna, Siemens). 
+          Mým hlavním zaměřením je explorativní analýza dat a BI. Analytická práce mě baví a chci se v ní dál zdokonalovat, zároveň k ní ráda nabaluji i další Data Science přístupy. 
+          Baví mě propojovat klasickou analytiku s Machine Learningem a NLP.
+
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
