@@ -10,7 +10,7 @@ const techCategories = [
   {
     title: "Libraries & Frameworks",
     icon: Code,
-    techs: ["Pandas", "NumPy", "Scikit-learn", "XGBoost", "Matplotlib", "TidyVerse"]
+    techs: ["Pandas", "NumPy", "Scikit-learn", "XGBoost", "Matplotlib", "TidyVerse", "PyTorch", "BeautifulSoup"]
   },
   {
     title: "Database Systems",
