@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Anna Budilová | Data Analytics',
-  description: 'Data Analytics student at VŠE with hands-on professional experience as a Data Analyst at Česká spořitelna and Siemens. My core expertise is built on SQL, exploratory data analysis, and BI reporting. I enjoy working with data and uncovering insights. To take my analytical work even further, I’m currently expanding my skillset with advanced Data Science methods—combining classic business analytics with Python, Machine Learning, and NLP.',
+  description: 'Data Science student at VŠE with hands-on analytics experience from Siemens and Erste Group. Currently expanding my skillset by combining classic business analytics with Python, Machine Learning, and NLP.',
   generator: 'v0.app',
   icons: {
     icon: [
