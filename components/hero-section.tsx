@@ -15,10 +15,10 @@ export function HeroSection() {
       
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <div className="mb-6">
-          <span className="inline-block px-4 py-1.5 text-sm font-medium text-accent bg-accent/10 rounded-full border border-accent/20">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/50 text-foreground text-sm font-medium">
             Open to opportunities
-          </span>
-        </div>
+        </span>
+       </div>
         
         <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-4 tracking-tight text-balance">
           Anna Budilová
