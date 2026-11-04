@@ -85,7 +85,7 @@ export function WipSection() {
           </p>
         </div>
 
-        {/* Změněno z grid-cols-2 na grid-cols-1, takže karty jsou pod sebou */}
+        {/* Karty pod sebou */}
         <div className="grid grid-cols-1 gap-12">
           {/* První projekt: Skincare Scraper */}
           <div className="p-6 md:p-8 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
@@ -145,11 +145,9 @@ with sync_playwright() as p:
                 Full-stack web application powered by Flask and SQLite with a relational schema. It features an automated INCIDecoder scraping pipeline, expert dermatological logic mapping ingredients to skin concerns, and comprehensive CLI analytical tools.
               </p>
               
-              {/* Ukázka expertní logiky */}
-              <div className="w-full bg-background/80 rounded-lg border border-border p-4 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
-                <pre><code>{`
-
-@app.route('/')
+              {/* Ukázka Flask kódu s nastavenou maximální výškou a scrollováním (max-h-96 overflow-y-auto) */}
+              <div className="w-full max-h-96 overflow-y-auto overflow-x-auto bg-background/80 rounded-lg border border-border p-4 mb-6 font-mono text-xs text-muted-foreground shadow-inner">
+                <pre><code>{`@app.route('/')
 def home():
     search_query = request.args.get('q')
     results = []
@@ -200,11 +198,10 @@ def product_detail(product_id):
     ''', (product_id,)).fetchall()
     
     conn.close()
-    
 `}</code></pre>
               </div>
 
-              {/* Náhledové miniatury obrázků v kartě (rozložené do mřížky) */}
+              {/* Náhledové miniatury obrázků v kartě */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
                 {skincareImages.map((img, i) => (
                   <div 
