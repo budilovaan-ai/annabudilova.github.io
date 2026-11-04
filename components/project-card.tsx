@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
@@ -37,19 +37,37 @@ export function ProjectCard({
 }: ProjectCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null)
 
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation()
+  const handleNext = () => {
     if (currentImageIndex !== null && images.length > 0) {
       setCurrentImageIndex((prev) => (prev! + 1) % images.length)
     }
   }
 
-  const handlePrev = (e: React.MouseEvent) => {
-    e.stopPropagation()
+  const handlePrev = () => {
     if (currentImageIndex !== null && images.length > 0) {
       setCurrentImageIndex((prev) => (prev! - 1 + images.length) % images.length)
     }
   }
+
+  // Poslouchání klávesnice pro šipky a Escape
+  useEffect(() => {
+    if (currentImageIndex === null) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        handleNext()
+      } else if (e.key === "ArrowLeft") {
+        handlePrev()
+      } else if (e.key === "Escape") {
+        setCurrentImageIndex(null)
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [currentImageIndex, images.length])
 
   return (
     <>
@@ -170,14 +188,14 @@ export function ProjectCard({
         </CardContent>
       </Card>
 
-      {/* Galerie Modal */}
+      {/* Gallery Modal */}
       {currentImageIndex !== null && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-sm p-4 md:p-8"
           onClick={() => setCurrentImageIndex(null)}
         >
           <div className="relative w-full h-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center">
-            {/* Zavírací tlačítko */}
+            {/* Close button */}
             <Button 
               variant="secondary" 
               size="icon" 
@@ -190,32 +208,41 @@ export function ProjectCard({
               <X className="w-6 h-6 stroke-[3px]" />
             </Button>
 
-            {/* Šipka vlevo (Předchozí) */}
+            {/* Left arrow (Previous) */}
             {images.length > 1 && (
               <Button
                 variant="secondary"
                 size="icon"
                 className="absolute left-2 top-1/2 -translate-y-1/2 z-[60] rounded-full bg-card/80 text-foreground shadow-lg hover:bg-card"
-                onClick={handlePrev}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrev();
+                }}
               >
                 <ChevronLeft className="w-6 h-6" />
               </Button>
             )}
 
-            {/* Šipka vpravo (Další) */}
+            {/* Right arrow (Next) */}
             {images.length > 1 && (
               <Button
                 variant="secondary"
                 size="icon"
                 className="absolute right-2 top-1/2 -translate-y-1/2 z-[60] rounded-full bg-card/80 text-foreground shadow-lg hover:bg-card"
-                onClick={handleNext}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNext();
+                }}
               >
                 <ChevronRight className="w-6 h-6" />
               </Button>
             )}
             
-            {/* Obrázek */}
-            <div className="relative w-full h-[80vh] rounded-xl overflow-hidden border border-border bg-card/50 shadow-2xl flex items-center justify-center">
+            {/* Image */}
+            <div 
+              className="relative w-full h-[80vh] rounded-xl overflow-hidden border border-border bg-card/50 shadow-2xl flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
               <Image
                 src={images[currentImageIndex].src}
                 alt={images[currentImageIndex].caption}
@@ -225,8 +252,8 @@ export function ProjectCard({
               />
             </div>
 
-            {/* Popisek a počítadlo obrázků */}
-            <div className="mt-4 text-center">
+            {/* Caption and counter */}
+            <div className="mt-4 text-center" onClick={(e) => e.stopPropagation()}>
               <p className="text-sm font-medium text-foreground">
                 {images[currentImageIndex].caption}
               </p>
