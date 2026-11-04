@@ -31,8 +31,6 @@ export function HeroSection() {
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-pretty">
           Data Analytics student at VŠE with hands-on professional experience as a Data Analyst at Česká spořitelna and Siemens, where I learned how to turn data into meaningful business insights. 
           I want to connect this analytical foundation directly with advanced Data Science and add another layer through machine learning and advanced modeling.
-<br/><br/>
-I enjoy working with data and uncovering insights. To take my analytical work even further, I’m currently expanding my skillset with advanced Data Science methods—combining classic business analytics with Python, Machine Learning, and NLP.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
