@@ -39,7 +39,7 @@ export function HeroSection() {
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-base font-medium"
             asChild
           >
-            <a href="/cv_2026.pdf" download="cv_2026.pdf">
+            <a href="/Anna_Budilova_CV.pdf" download="Anna_Budilova_CV.pdf">
               <Download className="w-5 h-5 mr-2" />
               Download CV (PDF)
             </a>
