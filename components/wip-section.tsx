@@ -111,10 +111,14 @@ def update_concerns(cur, keyword, concern_id):
                 </a>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
                 <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Python / Flask</span>
                 <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Expert Logic</span>
               </div>
             </div>
           </div>
-          }
+        </div>
+      </div>
+    </section>
+  )
+}
