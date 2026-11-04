@@ -11,12 +11,12 @@ export function WipSection() {
             Work in Progress
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            What I'm actively coding, scraping, and building right now.
+            What I&apos;m actively coding, scraping, and building right now.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Skincare Scraper s místem pro kód */}
+          {/* Skincare Scraper */}
           <div className="p-6 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -27,19 +27,44 @@ export function WipSection() {
                 Long-term Python scraping pipeline running continuously for over 6 months. It automatically collects pricing, availability, and discount histories for skincare products from Alza and Notino. The final dataset is being prepared for time-series forecasting, interactive data visualizations and Machine Learning applications (such as price anomaly detection).
               </p>
               
-              {/* ZDE PŘIJDE FOTKA TVÉHO KÓDU */}
-              <div className="w-full h-40 bg-secondary/50 rounded-lg border border-border mb-6 flex items-center justify-center overflow-hidden relative">
-                 {/* Až budeš mít screen kódu, dej sem tag <img src="cesta-k-fotce.jpg" alt="code" className="object-cover w-full h-full" /> a smaž ten span pod tím */}
-                 <span className="text-xs text-muted-foreground font-mono">[ Space for your Python code snippet ]</span>
+              {/* Ukázka reálného Playwright kódu uvnitř karty */}
+              <div className="w-full bg-background/80 rounded-lg border border-border p-3 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
+                <pre><code>{`from playwright.sync_api import sync_playwright
+import pandas as pd
+import datetime
+
+with sync_playwright() as p:
+    browser = p.chromium.connect_over_cdp("http://localhost:9222")
+    page = browser.contexts[0].new_page()
+    page.goto("https://www.notino.cz/pletova-sera/")
+    
+    brands = page.locator('[data-testid="product-tile-brand"]').all_text_contents()
+    prices = page.locator('[data-testid="price-component"]').all_text_contents()
+`}</code></pre>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Python</span>
-              <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">BeautifulSoup / Playwright</span>
+
+            <div>
+              {/* GitHub Link pod kódem */}
+              <div className="mb-4">
+                <a 
+                  href="https://github.com/budilovaan-ai/Skincare_Price_Tracker" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-xs text-primary hover:underline inline-flex items-center gap-1 font-medium"
+                >
+                  View full source code on GitHub →
+                </a>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Python</span>
+                <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Playwright / BeautifulSoup</span>
+              </div>
             </div>
           </div>
 
-          {/* Skincare Webovka s místem pro screeny */}
+          {/* Skincare Webovka / Databáze */}
           <div className="p-6 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -50,10 +75,16 @@ export function WipSection() {
                 Developing an interactive web application designed to help users navigate complex skincare formulations. Users can filter products by skin concerns or specific active ingredients, with everything cross-referenced in a custom database.
               </p>
               
-              {/* ZDE PŘIJDE FOTKA TVÉ WEBOVKY */}
-              <div className="w-full h-40 bg-secondary/50 rounded-lg border border-border mb-6 flex items-center justify-center overflow-hidden relative">
-                 {/* Až budeš mít screen webu, dej sem tag <img src="cesta-k-fotce.jpg" alt="web UI" className="object-cover w-full h-full" /> a smaž ten span pod tím */}
-                 <span className="text-xs text-muted-foreground font-mono">[ Space for your App UI screenshot ]</span>
+              {/* Ukázka SQL schématu uvnitř karty */}
+              <div className="w-full bg-background/80 rounded-lg border border-border p-3 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
+                <pre><code>{`CREATE TABLE skincare_products (
+    id UUID PRIMARY KEY,
+    brand VARCHAR(100),
+    product_name VARCHAR(255),
+    active_ingredients JSONB,
+    ceramide_percentage DECIMAL(3,1),
+    price_history_id UUID
+);`}</code></pre>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
