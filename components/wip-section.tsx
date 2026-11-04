@@ -13,7 +13,7 @@ interface ProjectImage {
 export function WipSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null)
 
-  // Cesty k obrázkům přímo v public složce (snimek_1.png až snimek_5.png)
+  // Cesty k 5 obrázkům přímo v public složce
   const skincareImages: ProjectImage[] = [
     {
       src: "/snimek_1.png",
@@ -71,7 +71,7 @@ export function WipSection() {
 
   return (
     <section className="py-20 px-4 bg-secondary/10 border-t border-border/30" id="wip">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4 flex items-center justify-center gap-3">
             <span className="relative flex h-4 w-4">
@@ -85,12 +85,13 @@ export function WipSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* Změněno z grid-cols-2 na grid-cols-1, takže karty jsou pod sebou */}
+        <div className="grid grid-cols-1 gap-12">
           {/* První projekt: Skincare Scraper */}
-          <div className="p-6 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
+          <div className="p-6 md:p-8 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-lg text-foreground">Skincare Price Tracker & Scraper</h4>
+                <h4 className="font-semibold text-xl text-foreground">Skincare Price Tracker & Scraper</h4>
                 <span className="text-xs px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 font-medium">Data Pipeline</span>
               </div>
               <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
@@ -98,7 +99,7 @@ export function WipSection() {
               </p>
               
               {/* Ukázka reálného Playwright kódu */}
-              <div className="w-full bg-background/80 rounded-lg border border-border p-3 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
+              <div className="w-full bg-background/80 rounded-lg border border-border p-4 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
                 <pre><code>{`from playwright.sync_api import sync_playwright
 import pandas as pd
 import datetime
@@ -134,10 +135,10 @@ with sync_playwright() as p:
           </div>
 
           {/* Druhý projekt: Skincare Database & Expert System + Galerie */}
-          <div className="p-6 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
+          <div className="p-6 md:p-8 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-lg text-foreground">Skincare Database & Expert System</h4>
+                <h4 className="font-semibold text-xl text-foreground">Skincare Database & Expert System</h4>
                 <span className="text-xs px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 font-medium">Full-Stack</span>
               </div>
               <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
@@ -145,7 +146,7 @@ with sync_playwright() as p:
               </p>
               
               {/* Ukázka expertní logiky */}
-              <div className="w-full bg-background/80 rounded-lg border border-border p-3 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
+              <div className="w-full bg-background/80 rounded-lg border border-border p-4 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
                 <pre><code>{`SKINCARE_KNOWLEDGE = {
     "Anti-Aging (Fine lines)": [
         "Retinol", "Retinal", "Bakuchiol", "Ascorbic Acid",
@@ -166,12 +167,12 @@ def update_concerns(cur, keyword, concern_id):
 `}</code></pre>
               </div>
 
-              {/* Náhledové miniatury obrázků v kartě */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
+              {/* Náhledové miniatury obrázků v kartě (rozložené do mřížky) */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
                 {skincareImages.map((img, i) => (
                   <div 
                     key={i} 
-                    className="relative h-32 rounded-lg overflow-hidden border border-border group cursor-pointer"
+                    className="relative h-28 rounded-lg overflow-hidden border border-border group cursor-pointer"
                     onClick={() => setCurrentImageIndex(i)}
                   >
                     <Image
