@@ -15,7 +15,7 @@ export function HeroSection() {
       
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <div className="mb-6">
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-primary/50 text-foreground text-sm font-medium">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-muted-foreground text-sm font-medium">
             Open to opportunities
         </span>
        </div>
