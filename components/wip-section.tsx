@@ -17,23 +17,23 @@ export function WipSection() {
   const skincareImages: ProjectImage[] = [
     {
       src: "/snimek_1.png",
-      caption: "Flask Web Interface & Product Search"
+      caption: "Main Search & Discovery Interface"
     },
     {
       src: "/snimek_2.png",
-      caption: "Expert System Ingredient Mapping"
+      caption: "Product Detail & Ingredients View"
     },
     {
       src: "/snimek_3.png",
-      caption: "Terminal Analysis Tool Output"
+      caption: "Full INCI List & Function Mapping"
     },
     {
       src: "/snimek_4.png",
-      caption: "Database Management & Utilities"
+      caption: "Expert System Ingredient Deep-Dive"
     },
     {
       src: "/snimek_5.png",
-      caption: "Additional System View"
+      caption: "Ingredient-to-Product Cross-Reference"
     }
   ]
 
