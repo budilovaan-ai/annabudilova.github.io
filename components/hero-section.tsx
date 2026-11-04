@@ -25,11 +25,12 @@ export function HeroSection() {
         </h1>
         
         <p className="text-xl md:text-2xl text-primary font-medium mb-6">
-          Data Analytics Student 
+          Data Science Student 
         </p>
         
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-pretty">
-          Data Analytics student at VŠE with hands-on professional experience as a Data Analyst at Česká spořitelna and Siemens. My core expertise is built on SQL, exploratory data analysis, and BI reporting.
+          Data Analytics student at VŠE with hands-on professional experience as a Data Analyst at Česká spořitelna and Siemens, where I learned how to turn data into meaningful business insights. 
+          I want to connect this analytical foundation directly with advanced Data Science and add another layer through machine learning and advanced modeling.
 <br/><br/>
 I enjoy working with data and uncovering insights. To take my analytical work even further, I’m currently expanding my skillset with advanced Data Science methods—combining classic business analytics with Python, Machine Learning, and NLP.
         </p>
@@ -42,7 +43,7 @@ I enjoy working with data and uncovering insights. To take my analytical work ev
           >
             <a href="/cv_2026.pdf" download="cv_2026.pdf">
               <Download className="w-5 h-5 mr-2" />
-              Stáhnout životopis (PDF)
+              Download CV (PDF)
             </a>
           </Button>
           
