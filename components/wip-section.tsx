@@ -13,23 +13,27 @@ interface ProjectImage {
 export function WipSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null)
 
-  // Cesty k obrázkům přímo v public složce
+  // Cesty k obrázkům přímo v public složce (snimek_1.png až snimek_5.png)
   const skincareImages: ProjectImage[] = [
     {
-      src: "/Snimek obrazovky 2026-11-04 185736.png",
+      src: "/snimek_1.png",
       caption: "Flask Web Interface & Product Search"
     },
     {
-      src: "/Snimek obrazovky 2026-11-04 185819.png",
+      src: "/snimek_2.png",
       caption: "Expert System Ingredient Mapping"
     },
     {
-      src: "/Snimek obrazovky 2026-11-04 185833.png",
+      src: "/snimek_3.png",
       caption: "Terminal Analysis Tool Output"
     },
     {
-      src: "/Snimek obrazovky 2026-11-04 185854.png",
+      src: "/snimek_4.png",
       caption: "Database Management & Utilities"
+    },
+    {
+      src: "/snimek_5.png",
+      caption: "Additional System View"
     }
   ]
 
