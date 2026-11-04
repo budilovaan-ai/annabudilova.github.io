@@ -1,4 +1,70 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+
+interface ProjectImage {
+  src: string
+  caption: string
+}
+
 export function WipSection() {
+  const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null)
+
+  // Cesty k obrázkům přímo v public složce
+  const skincareImages: ProjectImage[] = [
+    {
+      src: "/Snimek obrazovky 2026-11-04 185736.png",
+      caption: "Flask Web Interface & Product Search"
+    },
+    {
+      src: "/Snimek obrazovky 2026-11-04 185819.png",
+      caption: "Expert System Ingredient Mapping"
+    },
+    {
+      src: "/Snimek obrazovky 2026-11-04 185833.png",
+      caption: "Terminal Analysis Tool Output"
+    },
+    {
+      src: "/Snimek obrazovky 2026-11-04 185854.png",
+      caption: "Database Management & Utilities"
+    }
+  ]
+
+  const handleNext = () => {
+    if (currentImageIndex !== null && skincareImages.length > 0) {
+      setCurrentImageIndex((prev) => (prev! + 1) % skincareImages.length)
+    }
+  }
+
+  const handlePrev = () => {
+    if (currentImageIndex !== null && skincareImages.length > 0) {
+      setCurrentImageIndex((prev) => (prev! - 1 + skincareImages.length) % skincareImages.length)
+    }
+  }
+
+  // Ovládání šipkami na klávesnici a Escape pro zavření
+  useEffect(() => {
+    if (currentImageIndex === null) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        handleNext()
+      } else if (e.key === "ArrowLeft") {
+        handlePrev()
+      } else if (e.key === "Escape") {
+        setCurrentImageIndex(null)
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [currentImageIndex, skincareImages.length])
+
   return (
     <section className="py-20 px-4 bg-secondary/10 border-t border-border/30" id="wip">
       <div className="max-w-6xl mx-auto">
@@ -16,7 +82,7 @@ export function WipSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Skincare Scraper */}
+          {/* První projekt: Skincare Scraper */}
           <div className="p-6 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -27,7 +93,7 @@ export function WipSection() {
                 Long-term Python scraping pipeline running continuously for over 6 months. It automatically collects pricing, availability, and discount histories for skincare products from Alza and Notino. The final dataset is being prepared for time-series forecasting, interactive data visualizations and Machine Learning applications (such as price anomaly detection).
               </p>
               
-              {/* Ukázka reálného Playwright kódu uvnitř karty */}
+              {/* Ukázka reálného Playwright kódu */}
               <div className="w-full bg-background/80 rounded-lg border border-border p-3 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
                 <pre><code>{`from playwright.sync_api import sync_playwright
 import pandas as pd
@@ -45,7 +111,6 @@ with sync_playwright() as p:
             </div>
 
             <div>
-              {/* GitHub Link pod kódem */}
               <div className="mb-4">
                 <a 
                   href="https://github.com/budilovaan-ai/Skincare_Price_Tracker" 
@@ -64,7 +129,7 @@ with sync_playwright() as p:
             </div>
           </div>
 
-          {/* Skincare Webovka / Databáze */}
+          {/* Druhý projekt: Skincare Database & Expert System + Galerie */}
           <div className="p-6 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -96,10 +161,33 @@ def update_concerns(cur, keyword, concern_id):
         cur.execute("INSERT OR IGNORE INTO ingredient_to_concern (ingredient_id, concern_id) VALUES (?, ?)", (ing_id, concern_id))
 `}</code></pre>
               </div>
+
+              {/* Náhledové miniatury obrázků v kartě */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                {skincareImages.map((img, i) => (
+                  <div 
+                    key={i} 
+                    className="relative h-32 rounded-lg overflow-hidden border border-border group cursor-pointer"
+                    onClick={() => setCurrentImageIndex(i)}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.caption}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="text-foreground text-xs font-medium border border-border px-3 py-1 rounded-full backdrop-blur-sm bg-card/50">
+                        View
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div>
-              {/* GitHub Link pod kódem */}
               <div className="mb-4">
                 <a 
                   href="https://github.com/budilovaan-ai/Website_skincare" 
@@ -111,7 +199,7 @@ def update_concerns(cur, keyword, concern_id):
                 </a>
               </div>
 
-          <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2">
                 <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Python / Flask</span>
                 <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Expert Logic</span>
               </div>
@@ -119,6 +207,83 @@ def update_concerns(cur, keyword, concern_id):
           </div>
         </div>
       </div>
+
+      {/* Lightbox / Gallery Modal */}
+      {currentImageIndex !== null && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-sm p-4 md:p-8"
+          onClick={() => setCurrentImageIndex(null)}
+        >
+          <div className="relative w-full h-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center">
+            {/* Close button */}
+            <Button 
+              variant="secondary" 
+              size="icon" 
+              className="absolute top-0 right-0 z-[60] rounded-full bg-primary text-primary-foreground shadow-xl hover:scale-110 transition-transform border-2 border-background"
+              onClick={(e) => {
+                e.stopPropagation()
+                setCurrentImageIndex(null)
+              }}
+            >
+              <X className="w-6 h-6 stroke-[3px]" />
+            </Button>
+
+            {/* Left arrow (Previous) */}
+            {skincareImages.length > 1 && (
+              <Button
+                variant="secondary"
+                size="icon"
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-[60] rounded-full bg-card/80 text-foreground shadow-lg hover:bg-card"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handlePrev()
+                }}
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </Button>
+            )}
+
+            {/* Right arrow (Next) */}
+            {skincareImages.length > 1 && (
+              <Button
+                variant="secondary"
+                size="icon"
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-[60] rounded-full bg-card/80 text-foreground shadow-lg hover:bg-card"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handleNext()
+                }}
+              >
+                <ChevronRight className="w-6 h-6" />
+              </Button>
+            )}
+            
+            {/* Image */}
+            <div 
+              className="relative w-full h-[80vh] rounded-xl overflow-hidden border border-border bg-card/50 shadow-2xl flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={skincareImages[currentImageIndex].src}
+                alt={skincareImages[currentImageIndex].caption}
+                fill
+                className="object-contain"
+                unoptimized
+              />
+            </div>
+
+            {/* Caption and counter */}
+            <div className="mt-4 text-center" onClick={(e) => e.stopPropagation()}>
+              <p className="text-sm font-medium text-foreground">
+                {skincareImages[currentImageIndex].caption}
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                {currentImageIndex + 1} / {skincareImages.length}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
