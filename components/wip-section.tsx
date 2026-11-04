@@ -147,23 +147,60 @@ with sync_playwright() as p:
               
               {/* Ukázka expertní logiky */}
               <div className="w-full bg-background/80 rounded-lg border border-border p-4 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
-                <pre><code>{`SKINCARE_KNOWLEDGE = {
-    "Anti-Aging (Fine lines)": [
-        "Retinol", "Retinal", "Bakuchiol", "Ascorbic Acid",
-        "Acetyl Hexapeptide-8", "Copper Tripeptide-1"
-    ],
-    "Acné and clogged pores": [
-        "Salicylic Acid", "Niacinamide", "Azelaic Acid"
-    ],
-    "Skin barrier (Nourishing)": [
-        "Ceramide NP", "Cholesterol", "Squalane", "Ectoin"
-    ]
-}
+                <pre><code>{`
 
-def update_concerns(cur, keyword, concern_id):
-    cur.execute("SELECT ingredient_id FROM ingredients WHERE ingred_name LIKE ?", (f"%{keyword}%",))
-    for (ing_id,) in cur.fetchall():
-        cur.execute("INSERT OR IGNORE INTO ingredient_to_concern (ingredient_id, concern_id) VALUES (?, ?)", (ing_id, concern_id))
+@app.route('/')
+def home():
+    search_query = request.args.get('q')
+    results = []
+
+    if search_query:
+        conn = get_db_connection()
+        hledane_slovo = f"%{search_query}%"
+        
+        sql_query = """
+            SELECT p.product_id, p.brand, p.product_name, GROUP_CONCAT(DISTINCT c.concern_name) as concerns
+            FROM products p
+            LEFT JOIN product_to_concern ptc ON p.product_id = ptc.product_id
+            LEFT JOIN concerns c ON ptc.concern_id = c.concern_id
+            LEFT JOIN product_to_ingredient pti ON p.product_id = pti.product_id
+            LEFT JOIN ingredients i ON pti.ingredient_id = i.ingredient_id
+            WHERE p.brand LIKE ? 
+               OR p.product_name LIKE ?
+               OR i.ingred_name LIKE ?
+               OR c.concern_name LIKE ?
+            GROUP BY p.product_id
+        """
+        
+        results = conn.execute(sql_query, (hledane_slovo, hledane_slovo, hledane_slovo, hledane_slovo)).fetchall()
+        conn.close()
+
+    return render_template('index.html', search_query=search_query, results=results)
+
+@app.route('/product/<int:product_id>')
+def product_detail(product_id):
+    conn = get_db_connection()
+    
+    product = conn.execute('''
+        SELECT p.product_id, p.brand, p.product_name, c.category_name, p.time_of_use, p.personal_notes
+        FROM products p
+        LEFT JOIN categories c ON p.category_id = c.category_id
+        WHERE p.product_id = ?
+    ''', (product_id,)).fetchone()
+    
+    ingredients_raw = conn.execute('''
+        SELECT i.ingredient_id, i.ingred_name, 
+               GROUP_CONCAT(f.function_name, ', ') as functions
+        FROM ingredients i
+        JOIN product_to_ingredient pti ON i.ingredient_id = pti.ingredient_id
+        LEFT JOIN ingredient_to_function itf ON i.ingredient_id = itf.ingredient_id
+        LEFT JOIN functions f ON itf.function_id = f.function_id
+        WHERE pti.product_id = ?
+        GROUP BY i.ingredient_id
+    ''', (product_id,)).fetchall()
+    
+    conn.close()
+    
 `}</code></pre>
               </div>
 
