@@ -68,32 +68,53 @@ with sync_playwright() as p:
           <div className="p-6 rounded-xl bg-card border border-border shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-lg text-foreground">Skincare Database Web App</h4>
+                <h4 className="font-semibold text-lg text-foreground">Skincare Database & Expert System</h4>
                 <span className="text-xs px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 font-medium">Full-Stack</span>
               </div>
               <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                Developing an interactive web application designed to help users navigate complex skincare formulations. Users can filter products by skin concerns or specific active ingredients, with everything cross-referenced in a custom database.
+                Full-stack web application powered by Flask and SQLite with a relational schema. It features an automated INCIDecoder scraping pipeline, expert dermatological logic mapping ingredients to skin concerns, and comprehensive CLI analytical tools.
               </p>
               
-              {/* Ukázka SQL schématu uvnitř karty */}
+              {/* Ukázka expertní logiky */}
               <div className="w-full bg-background/80 rounded-lg border border-border p-3 mb-6 overflow-x-auto font-mono text-xs text-muted-foreground">
-                <pre><code>{`CREATE TABLE skincare_products (
-    id UUID PRIMARY KEY,
-    brand VARCHAR(100),
-    product_name VARCHAR(255),
-    active_ingredients JSONB,
-    ceramide_percentage DECIMAL(3,1),
-    price_history_id UUID
-);`}</code></pre>
+                <pre><code>{`SKINCARE_KNOWLEDGE = {
+    "Anti-Aging (Fine lines)": [
+        "Retinol", "Retinal", "Bakuchiol", "Ascorbic Acid",
+        "Acetyl Hexapeptide-8", "Copper Tripeptide-1"
+    ],
+    "Acné and clogged pores": [
+        "Salicylic Acid", "Niacinamide", "Azelaic Acid"
+    ],
+    "Skin barrier (Nourishing)": [
+        "Ceramide NP", "Cholesterol", "Squalane", "Ectoin"
+    ]
+}
+
+def update_concerns(cur, keyword, concern_id):
+    cur.execute("SELECT ingredient_id FROM ingredients WHERE ingred_name LIKE ?", (f"%{keyword}%",))
+    for (ing_id,) in cur.fetchall():
+        cur.execute("INSERT OR IGNORE INTO ingredient_to_concern (ingredient_id, concern_id) VALUES (?, ?)", (ing_id, concern_id))
+`}</code></pre>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Next.js / React</span>
-              <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Database Design</span>
+
+            <div>
+              {/* GitHub Link pod kódem */}
+              <div className="mb-4">
+                <a 
+                  href="https://github.com/budilovaan-ai/Website_skincare" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-xs text-primary hover:underline inline-flex items-center gap-1 font-medium"
+                >
+                  View full source code on GitHub →
+                </a>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Python / Flask</span>
+                <span className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-medium">Expert Logic</span>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+          }
