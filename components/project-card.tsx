@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { ExternalLink, AlertCircle, X } from "lucide-react"
+import { ExternalLink, AlertCircle, X, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 
 interface ProjectImage {
@@ -35,7 +35,21 @@ export function ProjectCard({
   buttonHref,
   links
 }: ProjectCardProps) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null)
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (currentImageIndex !== null && images.length > 0) {
+      setCurrentImageIndex((prev) => (prev! + 1) % images.length)
+    }
+  }
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (currentImageIndex !== null && images.length > 0) {
+      setCurrentImageIndex((prev) => (prev! - 1 + images.length) % images.length)
+    }
+  }
 
   return (
     <>
@@ -76,7 +90,7 @@ export function ProjectCard({
                 <div key={i} className="flex flex-col">
                   <div 
                     className="relative h-48 md:h-64 rounded-lg overflow-hidden border border-border group cursor-pointer"
-                    onClick={() => setSelectedImage(image.src)}
+                    onClick={() => setCurrentImageIndex(i)}
                   >
                     {image.src ? (
                       <Image
@@ -95,7 +109,7 @@ export function ProjectCard({
                     )}
                     <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <span className="text-foreground text-sm font-medium border border-border px-4 py-2 rounded-full backdrop-blur-sm bg-card/50">
-                        View
+                        View Gallery
                       </span>
                     </div>
                   </div>
@@ -156,33 +170,69 @@ export function ProjectCard({
         </CardContent>
       </Card>
 
-      {selectedImage && (
+      {/* Galerie Modal */}
+      {currentImageIndex !== null && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-sm p-4 md:p-8"
-          onClick={() => setSelectedImage(null)}
+          onClick={() => setCurrentImageIndex(null)}
         >
-          <div className="relative w-full h-full max-w-6xl max-h-[90vh]">
-            {}
+          <div className="relative w-full h-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center">
+            {/* Zavírací tlačítko */}
             <Button 
               variant="secondary" 
               size="icon" 
-              className="absolute -top-4 -right-4 z-[60] rounded-full bg-primary text-primary-foreground shadow-xl hover:scale-110 transition-transform border-2 border-background"
+              className="absolute top-0 right-0 z-[60] rounded-full bg-primary text-primary-foreground shadow-xl hover:scale-110 transition-transform border-2 border-background"
               onClick={(e) => {
                 e.stopPropagation();
-                setSelectedImage(null);
+                setCurrentImageIndex(null);
               }}
             >
               <X className="w-6 h-6 stroke-[3px]" />
             </Button>
+
+            {/* Šipka vlevo (Předchozí) */}
+            {images.length > 1 && (
+              <Button
+                variant="secondary"
+                size="icon"
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-[60] rounded-full bg-card/80 text-foreground shadow-lg hover:bg-card"
+                onClick={handlePrev}
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </Button>
+            )}
+
+            {/* Šipka vpravo (Další) */}
+            {images.length > 1 && (
+              <Button
+                variant="secondary"
+                size="icon"
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-[60] rounded-full bg-card/80 text-foreground shadow-lg hover:bg-card"
+                onClick={handleNext}
+              >
+                <ChevronRight className="w-6 h-6" />
+              </Button>
+            )}
             
-            <div className="relative w-full h-full rounded-xl overflow-hidden border border-border bg-card/50 shadow-2xl">
+            {/* Obrázek */}
+            <div className="relative w-full h-[80vh] rounded-xl overflow-hidden border border-border bg-card/50 shadow-2xl flex items-center justify-center">
               <Image
-                src={selectedImage}
-                alt="Expanded image"
+                src={images[currentImageIndex].src}
+                alt={images[currentImageIndex].caption}
                 fill
                 className="object-contain"
                 unoptimized
               />
+            </div>
+
+            {/* Popisek a počítadlo obrázků */}
+            <div className="mt-4 text-center">
+              <p className="text-sm font-medium text-foreground">
+                {images[currentImageIndex].caption}
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                {currentImageIndex + 1} / {images.length}
+              </p>
             </div>
           </div>
         </div>
